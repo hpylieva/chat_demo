@@ -2,3 +2,4 @@
 data
 ../secrets.toml
 tmp
+*_creds.json
