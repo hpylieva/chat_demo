@@ -19,6 +19,6 @@ This section provides examples of various chatbot implementations utilizing Lang
 ## Running locally
 ```shell
 # Run main streamlit app
-$ streamlit run Home.py
+$ streamlit run home.py
 ```
 
