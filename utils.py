@@ -67,7 +67,7 @@ def display_msg(msg, author):
     st.chat_message(author).write(msg)
 
 def configure_openai_api_key():
-    openai_api_key = json.load(open('../chatgpt_creds.json'))['OPENAI_API_KEY']
+    openai_api_key = st.secrets['OPENAI_API_KEY']
     if openai_api_key:
         st.session_state['OPENAI_API_KEY'] = openai_api_key
         os.environ['OPENAI_API_KEY'] = openai_api_key
