@@ -13,6 +13,8 @@ st.set_page_config(page_title='Context aware chatbot', page_icon='⭐')
 st.header('Context aware chatbot')
 st.write('Enhancing Chatbot Interactions through Context Awareness')
 
+st.write('Under the development...')
+
 class ContextChatbot:
 
     def __init__(self):
@@ -37,6 +39,6 @@ class ContextChatbot:
                 response = chain.run(user_query, callbacks=[st_cb])
                 st.session_state.messages.append({'role': 'assistant', 'content': response})
 
-if __name__ == '__main__':
-    obj = ContextChatbot()
-    obj.main()
+# if __name__ == '__main__':
+    # obj = ContextChatbot()
+    # obj.main()
