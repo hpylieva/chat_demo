@@ -60,15 +60,10 @@ class CustomDataChatbot:
             search_kwargs={'k':2, 'fetch_k':4}
         )
 
-        # Setup memory for contextual conversation        
-        memory = ConversationBufferMemory(
-            memory_key='chat_history',
-            return_messages=True
-        )
-
         # Setup LLM and QA chain
         llm = ChatOpenAI(model_name=self.openai_model, temperature=0, streaming=True)
-        qa_chain = ConversationalRetrievalChain.from_llm(llm, retriever=retriever, memory=memory, verbose=True)
+        qa_chain = ConversationalRetrievalChain.from_llm(
+            llm, retriever=retriever, verbose=True)
         return qa_chain
 
 
@@ -79,7 +74,7 @@ class CustomDataChatbot:
             st.error("Please upload PDF documents to continue!")
             st.stop()
 
-        user_query = st.text_input(label="Ask me anything!")
+        user_query = st.text_input(label="Ask me anything!", value="What is in this document(s)?")
 
         if uploaded_files and user_query:
             qa_chain = self.setup_qa_chain(uploaded_files)
