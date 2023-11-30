@@ -22,11 +22,24 @@ def displayPDF(upl_file, ui_width):
     # Convert to utf-8
     base64_pdf = base64.b64encode(bytes_data).decode("utf-8")
 
-    # Embed PDF in HTML
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width={str(ui_width)} height={str(ui_width*4/3)} type="application/pdf"></iframe>'
+    # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width={str(ui_width)} height={str(ui_width*4/3)} type="application/pdf"></iframe>'
+
+    # Embedding PDF in HTML
+    pdf_display =  f"""<embed
+    class="pdfobject"
+    type="application/pdf"
+    title="Embedded PDF"
+    src="data:application/pdf;base64,{base64_pdf}"
+    style="overflow: auto; width: 100%; height: 100%;">"""
 
     # Display file
     st.markdown(pdf_display, unsafe_allow_html=True)
+
+def display_pdf(pdf):
+
+    # Display an image for the selected page
+    image_bytes = pdf[page_number - 1].get_pixmap().tobytes()
+    st.image(image_bytes, caption=f"Page {page_number} of {num_pages}")
 
 check_password_routine()
 
