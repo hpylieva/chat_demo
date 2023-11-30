@@ -36,9 +36,26 @@ def setup_agent():
     )
     return agent
 
+PREPARED_PROMPTS = [
+    'What was the last score in Dallas Cowboys game and when did it take place?',
+    'Who won the oscar for the category Best Actor in 2023? In which movie they acted? What is IMDB rating of this movie?',
+    'What was the latest Bitcoin price?'
+]
 user_query = st.text_input(label="Ask me anything!")
-if user_query:
+
+st.write('Or select a prepared text.')
+st.session_state['selected_prompt'] = None
+columns = st.columns(len(PREPARED_PROMPTS))
+
+for col, prompt_name in zip(columns, PREPARED_PROMPTS):
+    if col.button(prompt_name):
+        st.session_state['selected_prompt'] = prompt_name
+
+final_prompt = user_query if user_query else st.session_state['selected_prompt']
+
+if final_prompt:
+    st.write(f'Your prompt: "{final_prompt}"')
     agent = setup_agent()
     st_cb = StreamlitCallbackHandler(st.container())
-    response = agent.run(user_query, callbacks=[st_cb])
+    response = agent.run(final_prompt, callbacks=[st_cb])
     st.write(response)
