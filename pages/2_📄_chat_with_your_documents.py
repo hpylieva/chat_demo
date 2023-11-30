@@ -22,15 +22,8 @@ def displayPDF(upl_file, ui_width):
     # Convert to utf-8
     base64_pdf = base64.b64encode(bytes_data).decode("utf-8")
 
-    # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width={str(ui_width)} height={str(ui_width*4/3)} type="application/pdf"></iframe>'
-
-    # Embedding PDF in HTML
-    pdf_display =  f"""<embed
-    class="pdfobject"
-    type="application/pdf"
-    title="Embedded PDF"
-    src="data:application/pdf;base64,{base64_pdf}"
-    style="overflow: auto; width: 100%; height: 100%;">"""
+    # Embed PDF in HTML
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width={str(ui_width)} height={str(ui_width*4/3)} type="application/pdf"></iframe>'
 
     # Display file
     st.markdown(pdf_display, unsafe_allow_html=True)
@@ -113,10 +106,10 @@ class CustomDataChatbot:
 
         if uploaded_files:
 
-                user_query = st.chat_input(placeholder="Ask me anything!")
-                ui_width = st_javascript("window.innerWidth")
-                for file in uploaded_files:
-                    displayPDF(file, ui_width - 10)
+                user_query = st.chat_input(placeholder="Ask me anything about the doc!")
+                # ui_width = st_javascript("window.innerWidth")
+                # for file in uploaded_files:
+                #     displayPDF(file, ui_width - 10)
                 if uploaded_files and user_query:
                     qa_chain = self.setup_qa_chain(uploaded_files)
 
