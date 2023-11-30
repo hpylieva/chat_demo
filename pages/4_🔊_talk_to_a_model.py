@@ -2,6 +2,9 @@ from pathlib import Path
 import streamlit as st
 from streamlit_mic_recorder import mic_recorder, speech_to_text
 from agents_setup import setup_internet_agent, get_agent_response
+from utils import check_password_routine
+
+check_password_routine()
 
 def synthesize_speech(text_input):
     speech_file_path = "speech.mp3"
