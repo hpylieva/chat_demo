@@ -15,22 +15,24 @@ st.set_page_config(
 
 st.header("Chatbots Demo")
 st.write("""
-Here you can find different examples of chatbot implementations catering to different use cases:
+This site provides examples of various genAI APIs use cases. 
 
 - **Context-Aware Chatbot**  
   This version of the chatbot is designed to remember and reference previous interactions within a session. 
-  It provides responses that are contextually relevant to the ongoing conversation, 
-  showcasing a more advanced and user-centric approach.
+  It provides responses that are contextually relevant to the ongoing conversation, showcasing 
+  a more advanced and user-centric approach.
 
-- **Chatbot with Internet Access**  
-  Expanding the capabilities further, this chatbot can access the internet. 
-  It's able to answer queries about recent events, fetch up-to-date information, 
-  and incorporate real-time data into its responses, making it an ideal tool for current affairs and dynamic content.
+- **Questions with Internet Access**  
+  This service has access to the Internet and is able to answer queries about recent events, fetch up-to-date 
+  information, and incorporate real-time data into its responses, 
+  making it an ideal tool for current affairs and dynamic content.
 
 - **Chat with Your Documents**  
-  Tailored for specific information needs, this chatbot can access and retrieve information from custom documents. 
-  This feature enables it to respond to queries based on the specific content of these documents, offering a highly 
-  customized and information-rich user experience.
+  Tailored for specific information needs, this service can access and retrieve information from custom documents. 
+ 
+- **Generate image**
+  Here you can generate images with DALL-E model.
 
-To explore sample usage of each chatbot, please navigate to the corresponding chatbot section.
+- **Talk to your model**
+  Here you can test text-to-speech and sppech-to-text services.
 """)
