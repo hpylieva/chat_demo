@@ -23,26 +23,26 @@ user_query = st.text_input(
 )
 
 st.write('Select style of your image')
-st.session_state['selected_prompt'] = None
 columns = st.columns(len(STYLE_PROMPTS))
 
 for col, prompt_name in zip(columns, STYLE_PROMPTS):
     if col.button(prompt_name):
         st.session_state['selected_prompt'] = prompt_name
+        st.write(prompt_name, st.session_state['selected_prompt'])
 
-image_size = st.selectbox("Choose size of the image", ['1024x1024', '1792x1024', '1024x1792'])
-image_quality = st.selectbox("Choose quality of the image", ['standard', 'hd'])
+st.session_state['image_size'] = st.selectbox("Choose size of the image", ['1024x1024', '1792x1024', '1024x1792'])
+st.session_state['image_quality'] = st.selectbox("Choose quality of the image", ['standard', 'hd'])
 
 final_prompt = user_query + f" in {st.session_state['selected_prompt']} style."
+st.write(f'**Your prompt: "{final_prompt}**"')
 
 if st.button('GENERATE!'):
-    st.write(f'**Your prompt: "{final_prompt}**"')
     st.spinner('Wait for it...')
     response = client.images.generate(
         model="dall-e-3",
         prompt=final_prompt,
-        size=image_size,
-        quality=image_quality,
+        size=st.session_state['image_size'],
+        quality=st.session_state['image_quality'],
         n=1,
     )
     image_url = response.data[0].url
