@@ -1,11 +1,7 @@
-
 import streamlit as st
 from utils import check_password_routine
 
 check_password_routine()
-
-# Main Streamlit app starts here
-
 
 st.set_page_config(
     page_title="Chatbots Demo",
