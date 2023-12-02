@@ -12,10 +12,7 @@ from utils import check_password_routine
 
 check_password_routine()
 
-# creds = json.load(open('../chatgpt_creds.json'))
-# openai.api_key = creds['OPENAI_API_KEY']
 os.environ["SERPAPI_API_KEY"] = st.secrets['API_KEY']
-
 
 st.set_page_config(page_title="ChatWeb", page_icon="🌐")
 st.header('Chatbot with Internet Access')
