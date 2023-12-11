@@ -1,23 +1,27 @@
 from openai import OpenAI
-
-
 import streamlit as st
+from utils import check_password_routine
+
+check_password_routine()
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 st.title("VC advisor")
 
 
-check_password_routine()
-
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {'role': 'system', 'content': """
+        You are a helpful friendly assistant, who answers on venture capitals questions. 
+        Don't provide too much advices right away. Try to understand user's request first with questions."""}
+    ]
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    if message["role"] != 'system':
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
 if prompt := st.chat_input("How can I help you today?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
