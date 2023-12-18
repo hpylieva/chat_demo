@@ -49,7 +49,7 @@ with st.expander("See explanation"):
 
     Here is how it works in general:
     """)
-    st.image("images/RAG.png")
+    st.image("images/RAG_2.png")
 
 
 class CustomDataChatbot:
