@@ -17,6 +17,19 @@ os.environ["SERPAPI_API_KEY"] = st.secrets['API_KEY']
 st.set_page_config(page_title="ChatWeb", page_icon="🌐")
 st.header('Chatbot with Internet Access')
 st.write('Equipped with internet access, enables users to ask questions about recent events')
+with st.expander("See explanation"):
+    st.write("""
+    Here an approach called ReAct is used.
+    
+    ReAct is an LLM prompting and result-processing approach that combines reasoning, action planning, 
+    and integration of sources of knowledge to make the LLM go beyond its language model and use information from 
+    the real world in its predictions. ReAct is a combination of reasoning and acting.
+    
+    Here is how it works in general:
+    """)
+    st.image("images/react_agents.png")
+    st.write("An example ReAct prompt with its components is shown below:")
+    st.image("images/react_prompt.png")
 
 utils.configure_openai_api_key()
 openai_model = "gpt-3.5-turbo"

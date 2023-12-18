@@ -39,6 +39,18 @@ check_password_routine()
 st.set_page_config(page_title="ChatPDF", page_icon="📄")
 st.header('Chat with your documents')
 st.write('Has access to custom documents and can respond to user queries by referring to the content within those documents')
+with st.expander("See explanation"):
+    st.write("""
+    Here we user an strategy called RAG is used.
+
+    RAG allows the LLM to present accurate information with source attribution. The output can include citations or 
+    references to sources. Users can also look up source documents themselves if they require further clarification or 
+    more detail. This can increase trust and confidence in your generative AI solution.
+
+    Here is how it works in general:
+    """)
+    st.image("images/RAG.png")
+
 
 class CustomDataChatbot:
 
@@ -121,5 +133,6 @@ class CustomDataChatbot:
                         st.session_state.messages.append({"role": "assistant", "content": response})
 
 if __name__ == "__main__":
+    st.session_state.messages = []
     obj = CustomDataChatbot()
     obj.main()
