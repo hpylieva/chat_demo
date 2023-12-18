@@ -41,7 +41,7 @@ st.header('Chat with your documents')
 st.write('Has access to custom documents and can respond to user queries by referring to the content within those documents')
 with st.expander("See explanation"):
     st.write("""
-    Here we user an strategy called RAG is used.
+    Here we user an strategy called Retrieval-Augmented Generation (RAG) is used.
 
     RAG allows the LLM to present accurate information with source attribution. The output can include citations or 
     references to sources. Users can also look up source documents themselves if they require further clarification or 
